@@ -94,6 +94,20 @@ for (let i = 0; i < formData.length; i++) {
   const textarea = document.createElement("textarea");
   let option;
 
+  let createOption = (options) => {
+    form.appendChild(select);
+    option = document.createElement("option");
+    option.innerHTML = "Select language...";
+    option.setAttribute("value", "disabled");
+    select.appendChild(option);
+    for (let v = 0; v < options.length; v++) {
+      option = document.createElement("option");
+      option.innerHTML = options[v].label;
+      option.setAttribute("value", options[v].value);
+      select.appendChild(option);
+    }
+  }
+
   // Set attributes for input fields
   input.setAttribute("options", options);
   input.setAttribute("id", id);
@@ -114,13 +128,7 @@ for (let i = 0; i < formData.length; i++) {
 
   // Create options dropdown
   if (item.type === "select") {
-    form.appendChild(select);
-    for (let v = 0; v < options.length; v++) {
-      option = document.createElement("option");
-      option.innerHTML = options[v].label;
-      option.setAttribute("value", options[v].value);
-      select.appendChild(option);
-    }
+    createOption(options);
   }
 
   if (item.type === "textarea") {
