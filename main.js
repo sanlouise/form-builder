@@ -35,6 +35,11 @@ for (let i = 0; i < formData.length; i++) {
   // Set constants
   const { options, type, id, icon, label } = formData[i];
   const form = document.querySelector("#fields");
+  if (icon) {
+    const iconElement = document.createElement("i");
+    iconElement.setAttribute("class", `fa ${icon}`);
+    form.appendChild(iconElement);
+  }
   // Destructuring at its finest
   const [input, select, textarea] = createElements(["input", "select", "textarea"]);
 
